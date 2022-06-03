@@ -4,13 +4,13 @@ from django.http import HttpResponse
 
 # Create your views here.
 def index(request):
-    return HttpResponse ("Hello, world. You're at the instaclone index page.")
+    return render(request, "photoapp/index.html")
 
 def sign_up(request):
-    return HttpResponse ("This is the registration page")
+    return render(request, 'auth/sign_up.html')
 
 def login(request):
-    return HttpResponse ("This is login page")
+    return render(request, 'auth/login.html')
 
 def profile(request):
-    return HttpResponse ("This is user profile page") 
+    return render(request, 'photoapp/profile.html')
