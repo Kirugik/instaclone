@@ -1,49 +1,64 @@
+{% extends 'photoapp/base.html' %}
+
+{% block title %} Instaclone {% endblock %}
+
+
+
+
+
+{% block content %}
 <style>
-    .content{
+    html, body {
+        font-size: 15px; 
+    }
+    .content {
         display: grid;
         grid-template-columns: 3fr 1fr;
     }
 </style> 
 
-
-<div class="row">
-    <div class="col-md-2">
-
-    </div>
-    <div class=" content col-md-8">
+<div class="container">
+    <div class="content">
         <div class="feeds">
-            <h3>feeds page</h3>
+            <h3>Feeds Page</h3>
             {% for profile in profiles %}
-            <img src="" alt="profile">
-            <p>{{profile.user}}</p>
-            <p>{{profile.bio}}</p>
-            <hr>   
+            <div class="card mb-4">
+                <div class="card-header">
+                    <img src="{{profile.profile_photo.url}}" width="250px" height="200px" alt="profile">
+                </div>
+                <div class="card-body">
+                    <p>{{profile.user}}</p>
+                    <p>{{profile.bio}}</p>
+                </div>
+            </div>
             {% endfor %}
-          
-
-            <h3>posts</h3>
-            {% for post in posts %}
-            <img src="{{post.image.url}}" alt="image">
-            <p>{{post.image_name}}</p>
-            <p>{{post.image_caption}}</p>
-            <small>{{post.posted}}</small> 
-            <br>
-            <br>
-            <br>
-            <br>
-            {% endfor %}
-            <hr>  
-
-
             
-
+    
+            <h3>Posts</h3>
+            {% for post in posts %}
+            <div class="card mb-5">
+                <div class="card-header">
+                    <h5>{{post.user}}</h5>
+                </div>
+                <div class="card-body">
+                    <img src="{{post.image.url}}" idth="250px" height="200px" alt="image"> 
+                    <p>{{post.image_name}}</p>
+                    <p>{{post.image_caption}}</p>
+                    
+                </div>
+                <div class="card-footer">
+                    <p class="text-muted">View all 100 comments</p>
+                    <small class="text-muted">{{post.posted|timesince}}</small> 
+                </div>
+            </div>
+            {% endfor %} 
         </div>
+
+
         <div class="suggestions">
             <h3>suggestions for you</h3>
             
             </div>
     </div>
-    <div class="col-md-2">
-
-    </div>
 </div>
+{% endblock %} 
