@@ -29,14 +29,16 @@ class Image(models.Model):
     def __str__(self):
         return self.image_name
 
-    def save_image():
-        pass 
+    def save_image(self):
+        self.save() 
 
-    def delete_image():
-        pass
+    def delete_image(self):
+        self.delete()
 
-    def update_caption():
-        pass  
+    @classmethod
+    def update_caption(cls, id, caption):
+        new_caption = cls.objects.filter(pk=id).update(image_caption=caption)
+        return new_caption 
     
 
 
@@ -51,10 +53,11 @@ class Comment(models.Model):
         ordering = ['-posted_on']   
         
     def __str__(self):
-        return self.body  
+        return self.user   
 
 
 
 class Like(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    image_id = models.ForeignKey(Image, on_delete=models.CASCADE)
+    image_id = models.ForeignKey(Image, on_delete=models.CASCADE) 
+

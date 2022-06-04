@@ -1,1 +1,69 @@
-<h2>Welcome to the registration page</h2>
+{% extends 'photoapp/base.html' %}
+{% load bootstrap4 %} 
+
+{% block title %} Profile {% endblock %}
+
+
+
+{% block content %}
+<div class="container">
+    {% if profile %}
+        {% for user in profile %}
+        <div class="row">
+            <div class="col-md-4">
+                <img src="{{user.profile_photo.url}}" alt="">
+            </div>
+            
+            <div class="col-md-8">
+                <h3><strong>{{user.user}}</strong></h3>
+                <h5><strong>{{images|length}}</strong>Post{{images|pluralize}}</h5>
+                <h5>{{user.bio}}</h5>
+                {% if user.user.id == user.id %}
+                    <a href="{% url 'new-post' %}">New Post</a>
+                    <a href="{% url 'update-profile' %}">Update Profile</a>
+                {% else %}
+                    <a href="">Unfollow</a>
+                    <a href="">Follow</a>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %
+
+        {% else %
+            <div class="row">
+                <div class="col-md-4">
+                    <img src="" alt="">
+                </div>
+                <div class="col-md-8">
+                    <h3><strong>{{user}}</strong></h3>
+                    <h5><strong>0</strong>Post<strong>0</strong>Followers<strong>0</strong>Following</h5>
+                    <h5>Bio: Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nostrum excepturi porro atque assumenda numquam, animi enim aspernatur vel cum at?</h5> 
+                        <a href="{% url 'new-post' %}">New Post</a>
+                        <a href="{% url 'update-profile' %}">Update Profile</a>
+                </div>
+            </div> 
+    {% endif %}
+    <div class="row">
+        {% if images %}
+            {% for image in images %}
+            <div class="col-md-4">
+                <div>
+                    <a href="#">
+                        <img src="{% image.image.url %}" alt="">
+                    </a>
+                    
+                </div>
+            </div>
+            {% endfor %}
+
+            {% else %}
+                {% if user.user.id == user.id %}
+                    <p>You have no posts. Create your first post <a href="{% url 'new-post' %}">here</a></p>
+                    {% else %}
+                        <p>This user does not have any post</p>
+                {% endif %}
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}

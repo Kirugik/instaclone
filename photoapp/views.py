@@ -6,11 +6,10 @@ from .forms import UpdateProfileForm,NewPostForm,CommentForm
 
 # Create your views here.
 def index(request):
-    profiles = Profile.objects.all()
     posts = Image.objects.all()
 
 
-    context = {'profiles': profiles, 'posts': posts}
+    context = {'posts': posts}
     return render(request, 'photoapp/index.html', context)
 
 
@@ -33,9 +32,21 @@ def create_post(request):
     return render(request, 'photoapp/create_post.html', context)
 
 
-def profile(request):
-    return render(request, 'photoapp/profile.html')
 
+def profile(request, pk):
+    user = User.objects.get(id=pk)
+    profile = Profile.objects.filter(id=pk) 
+    images = Image.objects.filter(pk=profile)
+
+
+    context = {'user': user, 'images': images, 'profile': profile} 
+    return render(request, 'photoapp/profile.html', context)
+
+
+
+def update_profile(request):
+    context = {}
+    return render(request, 'photoapp/update_profile.html', context)
 
 
 
