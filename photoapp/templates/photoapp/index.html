@@ -21,7 +21,7 @@
     <div class="content">
         <div class="feeds">
             <h3>Feeds Page</h3>
-            {% for profile in profiles %}
+            <!-- {% for profile in profiles %}
             <div class="card mb-4">
                 <div class="card-header">
                     <img src="{{profile.profile_photo.url}}" width="250px" height="200px" alt="profile">
@@ -31,25 +31,30 @@
                     <p>{{profile.bio}}</p>
                 </div>
             </div>
-            {% endfor %}
+            {% endfor %} -->
             
-    
-            <h3>Posts</h3>
+
             {% for post in posts %}
             <div class="card mb-5">
                 <div class="card-header">
                     <h5>{{post.user}}</h5>
                 </div>
                 <div class="card-body">
-                    <img src="{{post.image.url}}" idth="250px" height="200px" alt="image"> 
-                    <p>{{post.image_name}}</p>
+                    <img src="{{post.image.url}}" width="250px" height="200px" alt="image">
+                    <div class="icons">
+                        <a href="#"><i class="fa-solid fa-heart" style="font-size: 20px;"></i></a>
+                        <a href="#"><i class="fa-solid fa-comment" style="font-size: 20px;"></i></a> 
+                        <a href="#"><i class="fa-solid fa-share" style="font-size: 20px;"></i></a> 
+                    </div>
+                    <p>100 likes</p>
                     <p>{{post.image_caption}}</p>
+                    <p class="text-muted">View all 100 comments</p>
+                    <small class="text-muted">{{post.posted|timesince}} AGO</small> 
                     
                 </div>
-                <div class="card-footer">
-                    <p class="text-muted">View all 100 comments</p>
-                    <small class="text-muted">{{post.posted|timesince}}</small> 
-                </div>
+                <!-- <div class="card-footer">
+
+                </div> -->
             </div>
             {% endfor %} 
         </div>
