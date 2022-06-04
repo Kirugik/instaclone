@@ -17,10 +17,10 @@ def index(request):
 def create_post(request):
     current_user = request.user 
     profile = Profile.objects.get(user = request.user.id)
-    title = 'Create New Post'
+    title = 'New Post'
 
+    form = NewPostForm(request.POST, request.FILES)  
     if request.method == 'POST':
-        form = NewPostForm(request.POST, request.FILES)
         if form.is_valid():
             post = form.save(commit=False)
             post.user_profile = profile
