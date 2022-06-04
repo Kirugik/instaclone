@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User 
 from django.http import HttpResponse 
 from .models import Profile,Image,Comment,Like
-from .forms import NewPostForm
+from .forms import UpdateProfileForm,NewPostForm,CommentForm
 
 # Create your views here.
 def index(request):
@@ -33,6 +33,10 @@ def create_post(request):
     return render(request, 'photoapp/create_post.html', context)
 
 
+def profile(request):
+    return render(request, 'photoapp/profile.html')
+
+
 
 
 def sign_up(request):
@@ -41,5 +45,4 @@ def sign_up(request):
 def login(request):
     return render(request, 'auth/login.html')
 
-def profile(request):
-    return render(request, 'photoapp/profile.html')
+
