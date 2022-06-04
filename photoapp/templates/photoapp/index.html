@@ -1,1 +1,47 @@
-<h1>Welcome, You're at the instaclone index page.</h1>
+<style>
+    .content{
+        display: grid;
+        grid-template-columns: 3fr 1fr;
+    }
+</style> 
+
+
+<div class="row">
+    <div class="col-md-2">
+
+    </div>
+    <div class=" content col-md-8">
+        <div class="feeds">
+            <h3>feeds page</h3>
+            {% for profile in profiles %}
+            <img src="" alt="profile">
+            <p>{{profile.user}}</p>
+            <p>{{profile.bio}}</p>
+            <hr>   
+            {% endfor %}
+          
+
+            <h3>posts</h3>
+            {% for post in posts %}
+            <img src="{{post.image.url}}" alt="image">
+            <p>{{post.image_name}}</p>
+            <p>{{post.image_caption}}</p>
+            <small>{{post.posted}}</small> 
+            <br>
+            <br>
+            {% endfor %}
+            <hr>  
+
+
+            
+
+        </div>
+        <div class="suggestions">
+            <h3>suggestions for you</h3>
+            
+            </div>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+</div>

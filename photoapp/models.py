@@ -9,7 +9,7 @@ class Profile(models.Model):
     bio = models.CharField(max_length=200, blank=True) 
     
     def __str__(self): 
-        return self.user 
+        return self.bio 
 
 
 
@@ -20,8 +20,8 @@ class Image(models.Model):
     image_caption = models.TextField(max_length=200, null=True, blank=True) 
     posted = models.DateTimeField(auto_now_add=True) 
     # author = models.ForeignKey(User, on_delete=models.CASCADE) 
-    likes = models.ForeignKey('Like', on_delete=models.CASCADE)
-    comments = models.ForeignKey('Comment', on_delete=models.CASCADE)
+    likes = models.ForeignKey('Like', on_delete=models.CASCADE,null=True, blank=True)
+    comments = models.ForeignKey('Comment', on_delete=models.CASCADE, null=True, blank=True)
     
     class Meta:
         ordering = ['-posted']  
