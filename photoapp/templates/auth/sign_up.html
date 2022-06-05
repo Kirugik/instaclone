@@ -1,1 +1,40 @@
-<h2>Sign up here</h2>
+{% extends 'photoapp/base.html' %}
+
+{% block title %} Sign Up {% endblock %}
+
+
+{% block content %}
+<style>
+
+</style>
+
+
+<div class="container">
+<h4>Sign up to see photos and videos from your friends</h4> 
+<form method="POST" action="">
+    {% csrf_token %}
+
+    <div class="mb-3">
+        {{form.email.label}}
+        {{form.email}}
+    </div>
+    <div class="mt-3">
+        {{form.full_name.label}}
+        {{form.full_name}}
+    </div>
+    <div class="mt-3">
+        {{form.username.label}}
+        {{form.username}}
+    </div>
+    <div class="mt-3">
+        {{form.password1.label}}
+        {{form.password1}}
+    </div>
+    <div class="mt-3">
+        {{form.password2.label}}
+        {{form.password2}}
+    </div>
+    <input type="submit" name="sign-up" value="Sign Up" class="mt-3">
+</form>
+</div>
+{% endblock %} 

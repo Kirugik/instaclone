@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.http import HttpResponse 
 from django.contrib import messages 
 from .models import Profile,Image,Comment,Like
-from .forms import UpdateProfileForm,NewPostForm,CommentForm
+from .forms import UpdateProfileForm,NewPostForm,CommentForm, RegisterForm
 from django.contrib.auth.decorators import login_required 
 from django.contrib.auth import authenticate,login,logout 
 from django.contrib.auth.forms import UserCreationForm 
@@ -57,53 +57,54 @@ def update_profile(request):
 
 
 def sign_up(request):
-    form = UserCreationForm()
+    form = RegisterForm()
     
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = RegisterForm(request.POST)
         if form.is_valid():
-            user = form.save(commit=False)
-            user.username = user.username.lower()
-            user.save()
+            form.save()
+            # user = form.save(commit=False)
+            # user.username = user.username.lower()
+            # user.save() 
             
-            login(request, user) 
-            return redirect('index')
+        #     login(request, user) 
+        #     return redirect('index')
         
-        else:
-            messages.error(request, 'Registration failed!!')
+        # else:
+        #     messages.error(request, 'Registration failed!!')
 
     context = {'form': form}
-    return render(request, 'auth/auth.html', context)
+    return render(request, 'auth/sign_up.html', context)
 
 
 
 
 def login(request):
     # page = 'login'
-    if request.user.is_authenticated:
-        return redirect('photoapp/index')
+    # if request.user.is_authenticated:
+    #     return redirect('photoapp/index')
 
-    if request.method == 'POST':
-        username = request.POST.get('username').lower()
-        password = request.POST.get('password')
+    # if request.method == 'POST':
+    #     username = request.POST.get('username').lower()
+    #     password = request.POST.get('password')
         
-        try:
-            user = User.objects.get(username=username)
-        except:
-            messages.error(request, 'User do not exist')
+    #     try:
+    #         user = User.objects.get(username=username)
+    #     except:
+    #         messages.error(request, 'User do not exist')
             
-        user = authenticate(request, username=username, password=password) 
+    #     user = authenticate(request, username=username, password=password) 
 
 
-        if user is not None:
-            login(request, user)
-            return redirect('photoapp/index')
+    #     if user is not None:
+    #         login(request, user)
+    #         return redirect('photoapp/index')
 
-        else:
-            messages.error(request, 'Wrong username or password')
+    #     else:
+    #         messages.error(request, 'Wrong username or password')
 
     context = {}
-    return render(request, 'auth/auth.html', context)
+    return render(request, 'auth/login.html', context)
 
 
 
