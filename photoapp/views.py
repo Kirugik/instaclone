@@ -73,7 +73,7 @@ def sign_up(request):
             messages.error(request, 'Registration failed!!')
 
     context = {'form': form}
-    return render(request, 'auth/sign_up.html', context)
+    return render(request, 'auth/auth.html', context)
 
 
 
@@ -81,7 +81,7 @@ def sign_up(request):
 def login(request):
     # page = 'login'
     if request.user.is_authenticated:
-        return redirect('index')
+        return redirect('photoapp/index')
 
     if request.method == 'POST':
         username = request.POST.get('username').lower()
@@ -97,18 +97,18 @@ def login(request):
 
         if user is not None:
             login(request, user)
-            return redirect('index')
+            return redirect('photoapp/index')
 
         else:
             messages.error(request, 'Wrong username or password')
 
     context = {}
-    return render(request, 'auth/login.html', context)
+    return render(request, 'auth/auth.html', context)
 
 
 
 def logout(request):
     logout(request)
-    return redirect('index')
+    return redirect('photoapp/index') 
 
 
