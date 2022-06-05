@@ -12,8 +12,7 @@ from django.contrib.auth.forms import UserCreationForm
 def index(request):
     posts = Image.objects.all()
 
-
-    context = {'posts': posts}
+    context = {'posts': posts} 
     return render(request, 'photoapp/index.html', context)
 
 
@@ -33,7 +32,7 @@ def create_post(request):
         else:
             form = NewPostForm()
 
-    context = {'form': form}
+    context = {'form': form, 'current_user': current_user}
     return render(request, 'photoapp/create_post.html', context)
 
 

@@ -15,11 +15,11 @@ class Profile(models.Model):
 
 class Image(models.Model): 
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True, related_name='posts') 
+    user_profile = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True, blank=True)
     image = models.ImageField(upload_to='posts/') 
     image_name = models.CharField(max_length=100)
     image_caption = models.TextField(max_length=200, null=True, blank=True) 
     posted = models.DateTimeField(auto_now_add=True) 
-    # author = models.ForeignKey(User, on_delete=models.CASCADE) 
     likes = models.ForeignKey('Like', on_delete=models.CASCADE,null=True, blank=True)
     comments = models.ForeignKey('Comment', on_delete=models.CASCADE, null=True, blank=True)
     
