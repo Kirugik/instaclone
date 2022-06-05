@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.http import HttpResponse 
 from django.contrib import messages 
 from .models import Profile,Image,Comment,Like
-from .forms import UpdateProfileForm,NewPostForm,CommentForm, RegisterForm
+from .forms import UpdateProfileForm,NewPostForm,CommentForm
 from django.contrib.auth.decorators import login_required 
 from django.contrib.auth import authenticate,login,logout 
 from django.contrib.auth.forms import UserCreationForm 
@@ -17,10 +17,11 @@ def index(request):
     return render(request, 'photoapp/index.html', context)
 
 
+
+
 def create_post(request):
     current_user = request.user 
     profile = Profile.objects.get(user = request.user.id)
-    title = 'New Post'
 
     form = NewPostForm(request.POST, request.FILES)  
     if request.method == 'POST':
@@ -28,11 +29,11 @@ def create_post(request):
             post = form.save(commit=False)
             post.user_profile = profile
             post.save()
-            return redirect('profile', current_user.id)
+            return redirect('index')
         else:
             form = NewPostForm()
 
-    context = {'form': form, 'title':title}
+    context = {'form': form}
     return render(request, 'photoapp/create_post.html', context)
 
 
@@ -57,29 +58,30 @@ def update_profile(request):
 
 
 def sign_up(request):
-    form = RegisterForm()
+    pass 
+    # form = RegisterForm()
     
-    if request.method == 'POST':
-        form = RegisterForm(request.POST)
-        if form.is_valid():
-            form.save()
-            # user = form.save(commit=False)
-            # user.username = user.username.lower()
-            # user.save() 
+    # if request.method == 'POST':
+    #     form = RegisterForm(request.POST)
+    #     if form.is_valid():
+    #         user = form.save(commit=False)
+    #         user.username = user.username.lower()
+    #         user.save() 
             
-        #     login(request, user) 
-        #     return redirect('index')
+    #         login(request, user) 
+    #         return redirect('index')
         
-        # else:
-        #     messages.error(request, 'Registration failed!!')
+    #     else:
+    #         messages.error(request, 'Registration failed!!')
 
-    context = {'form': form}
-    return render(request, 'auth/sign_up.html', context)
+    # context = {'form': form}
+    # return render(request, 'auth/sign_up.html', context)
 
 
 
 
 def login(request):
+    pass 
     # page = 'login'
     # if request.user.is_authenticated:
     #     return redirect('photoapp/index')
@@ -103,8 +105,8 @@ def login(request):
     #     else:
     #         messages.error(request, 'Wrong username or password')
 
-    context = {}
-    return render(request, 'auth/login.html', context)
+    # context = {}
+    # return render(request, 'auth/login.html', context)
 
 
 

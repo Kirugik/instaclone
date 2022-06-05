@@ -5,17 +5,11 @@ from django.contrib.auth.models import User
 # Create your models here.
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE) 
-    email = models.EmailField(null=True, unique=True)
-    full_name = models.CharField(max_length =100, null=True)
-    username = models.CharField(max_length =50, null=True, unique=True) 
-    password = models.CharField(max_length=50, null=True) 
     profile_photo = models.ImageField(upload_to='profile_images/', blank=True) 
     bio = models.CharField(max_length=200, blank=True) 
-    
-    USERNAME_FIELD = 'username'
 
     def __str__(self): 
-        return self.username  
+        return self.user  
 
 
 
