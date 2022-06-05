@@ -33,10 +33,10 @@ def create_post(request):
 
 
 
-def profile(request, pk):
-    user = User.objects.get(id=pk)
-    profile = Profile.objects.filter(id=pk) 
-    images = Image.objects.filter(pk=profile)
+def profile(request, id):
+    user = User.objects.get(pk=id)
+    profile = Profile.objects.filter(user=id) 
+    images = Image.objects.filter(user=id)
 
 
     context = {'user': user, 'images': images, 'profile': profile} 
