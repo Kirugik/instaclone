@@ -21,7 +21,7 @@ class CommentForm(forms.ModelForm):
         model = Comment 
         fields = ['body']
 
-# class RegisterForm(UserCreationForm):
-#     class Meta:
-#         model = Profile
-#         fields = ['email', 'full_name', 'username', 'password1', 'password2'] 
+class RegisterForm(UserCreationForm):
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'password1', 'password2']  
