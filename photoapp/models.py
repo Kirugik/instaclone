@@ -9,7 +9,7 @@ class Profile(models.Model):
     bio = models.CharField(max_length=200, blank=True) 
 
     def __str__(self): 
-        return self.user  
+        return self.bio  
 
 
 
@@ -53,11 +53,10 @@ class Comment(models.Model):
         ordering = ['-posted_on']   
         
     def __str__(self): 
-        return self.body   
+        return 'Comment by {}'.format(self.user)
 
 
 
 class Like(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     image_id = models.ForeignKey(Image, on_delete=models.CASCADE) 
-

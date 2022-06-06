@@ -7,14 +7,14 @@ from .forms import UpdateProfileForm,NewPostForm,CommentForm, RegisterForm
 from django.contrib.auth.decorators import login_required 
 from django.contrib.auth import authenticate,login,logout 
 from django.contrib.auth.forms import UserCreationForm 
-from django.contrib import messages 
+from django.contrib import messages  
 
-# Create your views here.
+# Create your views here. 
 def sign_up(request):
-    if request.user.is_authenticated:
-        return redirect('photoapp/index')
-    else:
-        form = RegisterForm()
+    # if request.user.is_authenticated:
+    #     return redirect('photoapp/index')
+    # else:
+        form = RegisterForm() 
 
         if request.method == 'POST':
             form = RegisterForm(request.POST)
@@ -31,10 +31,10 @@ def sign_up(request):
 
 def login(request):
     # page = 'login'
-    if request.user.is_authenticated:
-        return redirect('photoapp/index')
+    # if request.user.is_authenticated:
+    #     return redirect('photoapp/index')
 
-    else:
+    # else:
         if request.method == 'POST':
             username = request.POST.get('username').lower()
             password = request.POST.get('password')
