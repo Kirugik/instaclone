@@ -43,7 +43,18 @@
                     </div>
                     <p>100 likes</p>
                     <p>{{post.image_caption}}</p>
-                    <p class="text-muted">View all 100 comments</p>
+                    {% if not image_id.image_comments.all %}
+                    <p>No comments yet... <a href="#">Add one</a> </p>
+                    {% else %}
+                        {% for comment in image_id.image_comments.all %}
+                            {{comment.name_id}} - {{comment.posted_on}}
+                            <br>
+                            {{comment.body}} 
+                        {% endfor %} 
+                    {% endif %}
+
+
+                    <!-- <p class="text-muted">View all 100 comments</p> -->
                     <small class="text-muted">{{post.posted|timesince}} AGO</small> 
                     
                 </div>

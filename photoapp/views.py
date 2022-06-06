@@ -11,9 +11,9 @@ from django.contrib import messages
 
 # Create your views here. 
 def sign_up(request):
-    # if request.user.is_authenticated:
-    #     return redirect('photoapp/index')
-    # else:
+    if request.user.is_authenticated:
+        return redirect('index')
+    else:
         form = RegisterForm() 
 
         if request.method == 'POST':
@@ -29,14 +29,14 @@ def sign_up(request):
         return render(request, 'auth/sign_up.html', context)
 
 
-def login(request):
+def log_in(request):
     # page = 'login'
-    # if request.user.is_authenticated:
-    #     return redirect('photoapp/index')
+    if request.user.is_authenticated:
+        return redirect('index')
 
-    # else:
+    else:
         if request.method == 'POST':
-            username = request.POST.get('username').lower()
+            username = request.POST.get('username')
             password = request.POST.get('password')
             
             try:
@@ -49,7 +49,7 @@ def login(request):
 
             if user is not None:
                 login(request, user) 
-                return redirect('photoapp/index')
+                return redirect('index')
 
             else:
                 messages.error(request, 'Wrong username or password')
@@ -59,15 +59,15 @@ def login(request):
 
 
 
-def logout(request):
+def log_out(request):
     logout(request)
-    return redirect('auth/login.html')  
+    return redirect('login')  
 
 
 
 
-# @login_required(login_url='login') 
-def index(request):
+@login_required(login_url='login') 
+def index(request): 
     posts = Image.objects.all()
 
     context = {'posts': posts} 
@@ -75,7 +75,7 @@ def index(request):
 
 
 
-# @login_required(login_url='login')  
+@login_required(login_url='login')  
 def create_post(request):
     current_user = request.user 
     profile = Profile.objects.get(user = request.user.id)
