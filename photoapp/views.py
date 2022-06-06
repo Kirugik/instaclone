@@ -86,9 +86,9 @@ def create_post(request):
             post = form.save(commit=False)
             post.user_profile = profile
             post.save() 
-            return redirect('index')
-        else:
-            form = NewPostForm()
+            return redirect('index', current_user.id)
+    else:
+        form = NewPostForm()
 
     context = {'form': form, 'current_user': current_user}
     return render(request, 'photoapp/create_post.html', context)
