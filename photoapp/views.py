@@ -85,7 +85,7 @@ def create_post(request):
         if form.is_valid():
             post = form.save(commit=False)
             post.user_profile = profile
-            post.save()
+            post.save() 
             return redirect('index')
         else:
             form = NewPostForm()

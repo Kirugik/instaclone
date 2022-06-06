@@ -18,29 +18,24 @@
     <div class="content">
         <div class="feeds">
             <h3>Feeds Page</h3>
-            <!-- {% for profile in profiles %}
-            <div class="card mb-4">
-                <div class="card-header">
-                    <img src="{{profile.profile_photo.url}}" width="250px" height="200px" alt="profile">
-                </div>
-                <div class="card-body">
-                    <p>{{profile.user}}</p>
-                    <p>{{profile.bio}}</p>
-                </div>
-            </div>
-            {% endfor %} -->
-            
-
+        
             {% for post in posts %}
-            <div class="card mb-5">
-                <div class="card-header">
+            <div class="card" style="width: 480px; height: 750px; margin-bottom: 15px; border-radius: 10px;">
+                <!-- <div class="card-header">
                     <a href="#"><h5> 
-                        <img class="img-circle" src="{{post.user_profile.profile_photo.url}}" width="50px" height="50px" alt=""> {{post.user}}
+                        <img class="img-circle" src="{{image.profile_photo.url}}" width="50px" height="50px" alt="">
+                        {{post.user}}
                     </h5></a>
                     
-                </div> 
+                </div>  -->
                 <div class="card-body">
-                    <img src="{{post.image.url}}" width="250px" height="200px" alt="image">
+                    <div class="user">
+                        <a href="#"><h5> 
+                            <img class="img-circle" src="{{image.profile_photo.url}}" width="50px" height="50px" alt="">
+                            {{post.user}}
+                        </h5></a>
+                    </div>
+                    <img src="{{post.image.url}}" width="480p" height="400px" alt="image" style="position: relative; left: -16px;">
                     <div class="icons">
                         <a href="#"><i class="fa-solid fa-heart" style="font-size: 20px;"></i></a>
                         <a href="#"><i class="fa-solid fa-comment" style="font-size: 20px;"></i></a> 
