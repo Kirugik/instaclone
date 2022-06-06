@@ -54,7 +54,7 @@ class Comment(models.Model):
         ordering = ['-posted_on']   
         
     def __str__(self): 
-        return 'Comment by {}'.format(self.name_id)
+        return self.name_id
 
 
 
