@@ -40,6 +40,11 @@ class Image(models.Model):
         new_caption = cls.objects.filter(pk=id).update(image_caption=caption)
         return new_caption 
     
+    @classmethod
+    def get_image_by_id(cls, image_id):
+        image = cls.objects.get(id = image_id)
+        return image
+    
 
 
 class Comment(models.Model):
